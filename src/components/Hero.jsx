@@ -1,4 +1,7 @@
 import { useRef, useState } from 'react'
+import { TiLocationArrow } from 'react-icons/ti'
+import Button from './Button'
+import { useGSAP } from '@gsap/react'
 
 const Hero = () => {
     const [currentIndex, setCurrentIndex] = useState(1)
@@ -6,9 +9,29 @@ const Hero = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [loadedVideos, setLoadedVideos] = useState(0)
 
-    const TOTAL_VIDEOS = 3
+    const TOTAL_VIDEOS = 4
     const NEXT_VID_REF = useRef(null)
 
+    useGSAP(
+        () => {
+            if (hasClicked) {
+                gsap.set('#next-video', { visibility: 'visible' })
+
+                gsap.to('#next-video', {
+                    transformOrigin: 'center center',
+                    scale: 1,
+                    width: '100%',
+                    height: '100%',
+                    duration: 1,
+                    ease: 'power1.inOut',
+                    onStart: () => NEXT_VID_REF.current.play(),
+                })
+                
+                gsap.from('#current-video')
+            }
+        },
+        { dependencies: [currentIndex], revertOnUpdate: true },
+    )
     const getVideoSrc = (index) => `videos/hero-${index}.mp4`
 
     const upcomingVideoIndex = (currentIndex % TOTAL_VIDEOS) + 1
@@ -59,6 +82,29 @@ const Hero = () => {
                         className='absolute left-0 top-0 size-full object-cover object-center'
                         onLoadedData={handleVideoLoad}
                     />
+
+                    <div className='absolute left-0 top-0 z-40 size-full'>
+                        <div className='mt-24 px-5 sm-px-10'>
+                            <h1 className='special-font hero-heading text-blue-100'>
+                                REDIFI<b>N</b>E
+                            </h1>
+                            <p className='mb-5 max-w-64 font-robert-regular text-blue-100'>
+                                Enter the Metagame Layer <br />
+                                Unleash the Play Economy
+                            </p>
+
+                            <Button
+                                id='watch-trailer'
+                                title='Watch Trailer'
+                                leftIcon={<TiLocationArrow />}
+                                containerClass='!bg-yellow-300 flex-center gap-1'
+                            />
+                        </div>
+                    </div>
+
+                    <h1 className='special-font hero-heading absolute bottom-5 right-5 text-black'>
+                        G<b>A</b>MING
+                    </h1>
                 </div>
             </div>
         </section>
