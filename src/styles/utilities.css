@@ -11,13 +11,16 @@
 }
 
 @utility nav-hover-btn {
-    position: relative;
-    margin-inline-start: 2.5rem; /* ms-10 */
-    font-family: 'general';
-    font-size: 0.75rem; /* text-xs */
-    text-transform: uppercase;
-    color: #ebf8ff; /* text-blue-50 */
-    cursor: pointer;
+    @apply relative ms-10 font-general text-xs uppercase text-blue-50 cursor-pointer;
+
+    &::after {
+        @apply absolute -bottom-0.5 left-0 h-[2px] w-full origin-bottom-right scale-x-0 bg-neutral-800 transition-transform duration-300 ease-[cubic-bezier(0.65_0.05_0.36_1)] dark:bg-white;
+        content: '';
+    }
+
+    &:hover::after {
+        @apply origin-bottom-left scale-x-100;
+    }
 }
 
 @utility floating-nav {
@@ -54,9 +57,9 @@
     border-radius: 9999px; /* rounded-full */
     background-color: white;
     transition: all 0.2s ease-in-out;
-}
 
-@utility indicator-line.active {
-    animation: indicator-line 0.5s ease infinite;
-    animation-delay: calc(var(--animation-order) * 0.1s);
+    &.active {
+        animation: indicator-line 0.5s ease infinite;
+        animation-delay: calc(var(--animation-order) * 0.1s);
+    }
 }
