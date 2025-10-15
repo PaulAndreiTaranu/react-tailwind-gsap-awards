@@ -53,7 +53,7 @@
 
 @utility indicator-line {
     height: 0.25rem; /* h-1 */
-    width: 1px; /* w-px */
+    width: 2px; /* w-px */
     border-radius: 9999px; /* rounded-full */
     background-color: white;
     transition: all 0.2s ease-in-out;
