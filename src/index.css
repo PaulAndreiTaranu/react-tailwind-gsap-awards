@@ -8,10 +8,10 @@
 @theme {
     /* FONTS */
     --font-zentry: 'zentry', sans-serif;
-    --font-circular: 'circular-web' sans-serif;
-    --font-general: 'general' sans-serif;
-    --font-robert-medium: 'robert-medium' sans-serif;
-    --font-robert-regular: 'robert-regular' sans-serif;
+    --font-circular: 'circular-web', sans-serif;
+    --font-general: 'general', sans-serif;
+    --font-robert-medium: 'robert-medium', sans-serif;
+    --font-robert-regular: 'robert-regular', sans-serif;
 
     /* COLORS */
     --color-blue-50: #dfdff0;
